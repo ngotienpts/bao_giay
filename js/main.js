@@ -7,39 +7,24 @@ document.addEventListener("DOMContentLoaded", function () {
     function initFancybox() {
         if (fancyboxes) {
             fancyboxes.forEach(function () {
-                $(".fancybox-full a").fancybox({
-                    touch: {
-                        vertical: false,
-                        momentum: false,
-                    },
-                    beforeShow: function () {
-                        document.body.style.overflow = "hidden";
-                    },
-                    afterClose: function () {
-                        document.body.style.overflow = "";
-                    },
-                });
+                $(".fancybox-full a").fancybox();
             });
         }
+        document.addEventListener(
+            "touchstart",
+            function (event) {
+                event.preventDefault();
+            },
+            { passive: false }
+        );
 
-        // Thêm sự kiện ngăn chặn mặc định cho các phần tử fancybox
-        fancyboxes.forEach(function (fancybox) {
-            fancybox.addEventListener(
-                "touchstart",
-                function (event) {
-                    event.preventDefault();
-                },
-                { passive: false }
-            );
-
-            fancybox.addEventListener(
-                "touchmove",
-                function (event) {
-                    event.preventDefault();
-                },
-                { passive: false }
-            );
-        });
+        document.addEventListener(
+            "touchmove",
+            function (event) {
+                event.preventDefault();
+            },
+            { passive: false }
+        );
     }
 
     // Khởi tạo slider với một item
@@ -54,12 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (window.innerWidth <= 1024) {
                     slides.forEach((slide) => {
                         if (slide.querySelector(".empty")) {
-                            slide.remove();
+                            slide.style.display = "none";
                         }
                     });
                 }
 
-                new Swiper(slider, {
+                var swiper = new Swiper(slider, {
                     slidesPerView: 1,
                     spaceBetween: 0,
                     slidesPerGroup: 1,
@@ -86,6 +71,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             slidesPerGroup: 2,
                         },
                     },
+                });
+
+                // Thêm sự kiện lắng nghe cho các phím mũi tên
+                document.addEventListener("keydown", function (event) {
+                    if (event.key === "ArrowRight") {
+                        swiper.slideNext();
+                    } else if (event.key === "ArrowLeft") {
+                        swiper.slidePrev();
+                    }
                 });
             });
         }

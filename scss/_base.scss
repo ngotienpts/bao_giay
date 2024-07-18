@@ -1,0 +1,74 @@
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    font-style: normal;
+    text-rendering: geometricPrecision;
+    line-height: 1.3;
+    color: #000;
+    background-color: #fff;
+
+    &.hidden {
+        overflow: hidden;
+    }
+}
+
+input,
+textarea,
+select,
+button {
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    text-rendering: geometricPrecision;
+    border: 0;
+    color: #000;
+    font-size: 1rem;
+    background-color: transparent;
+}
+input {
+    line-height: normal;
+}
+label,
+button {
+    cursor: pointer;
+}
+a {
+    text-decoration: unset;
+    color: inherit;
+}
+a:hover,
+a:active,
+a:focus {
+    outline: 0;
+    color: inherit;
+    color: #fb0505;
+}
+
+.link-decoration {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+img {
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+}

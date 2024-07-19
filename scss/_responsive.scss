@@ -134,4 +134,34 @@
     .d-sm-grid {
         display: grid;
     }
+    .newspapers {
+        &-container {
+            .sidebar {
+                padding-top: 20px;
+                .list {
+                    height: calc(100% - 50px);
+                }
+            }
+            .content {
+                .swiper-button-next:after,
+                .swiper-rtl .swiper-button-prev:after,
+                .swiper-button-prev:after,
+                .swiper-rtl .swiper-button-next:after {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+// max width 400px
+@media (max-width: 400px) {
+    .newspapers {
+        &-container {
+            .sidebar {
+                .list {
+                    height: calc(100% - 40px);
+                }
+            }
+        }
+    }
 }

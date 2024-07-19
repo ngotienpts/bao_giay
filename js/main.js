@@ -2,7 +2,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Tập hợp tất cả các phần tử cần sử dụng
     const twoSlides = document.querySelectorAll(".js__twoSlidesContainer");
     const fancyboxes = document.querySelectorAll(".fancybox-full");
+    const items = document.querySelectorAll(".js__itemChildren");
+    const sidebar = document.querySelector(".js__sidebar");
+    const content = document.querySelector(".js__content");
 
+    // Xử lý khi width nhở hơn 1024
+    function handleResizeWidth() {
+        if (window.innerWidth <= 700) {
+            sidebar.style.height = screen.height - content.offsetHeight + "px";
+        } else {
+            sidebar.style.height = "100%";
+        }
+    }
     // Khởi tạo fancybox
     function initFancybox() {
         if (fancyboxes) {
@@ -10,21 +21,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 $(".fancybox-full a").fancybox();
             });
         }
-        document.addEventListener(
-            "touchstart",
-            function (event) {
-                event.preventDefault();
-            },
-            { passive: false }
-        );
-
-        document.addEventListener(
-            "touchmove",
-            function (event) {
-                event.preventDefault();
-            },
-            { passive: false }
-        );
+        // document.addEventListener(
+        //     "touchstart",
+        //     function (event) {
+        //         event.preventDefault();
+        //     },
+        //     { passive: false }
+        // );
+        // document.addEventListener(
+        //     "touchmove",
+        //     function (event) {
+        //         event.preventDefault();
+        //     },
+        //     { passive: false }
+        // );
     }
 
     // Khởi tạo slider với một item
@@ -42,6 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
                             slide.style.display = "none";
                         }
                     });
+
+                    // items.forEach((item) => {
+                    //     if (item.querySelector(".empty")) {
+                    //         item.style.display = "none";
+                    //     }
+                    // });
                 }
 
                 var swiper = new Swiper(slider, {
@@ -81,12 +97,31 @@ document.addEventListener("DOMContentLoaded", function () {
                         swiper.slidePrev();
                     }
                 });
+
+                // Thêm sự kiện khi click vào tab bên trái thì sẽ chuyển đến slide tương ứng
+                items.forEach(function (item, index) {
+                    item.addEventListener("click", function () {
+                        var itemActive = document.querySelector(
+                            ".js__itemChildren.active"
+                        );
+                        itemActive.classList.remove("active");
+                        this.classList.add("active");
+
+                        // var index = this.getAttribute("data-index");
+                        swiper.slideTo(index);
+
+                        if (window.innerWidth <= 1024) {
+                            swiper.slideTo(index - 1);
+                        }
+                    });
+                });
             });
         }
     }
-
+    window.addEventListener("resize", handleResizeWidth);
     // Khởi tạo tất cả các chức năng
     function initApp() {
+        handleResizeWidth();
         initFancybox();
         initSliderOneItems();
     }

@@ -54,6 +54,19 @@
             }
             .item-children {
                 position: relative;
+                cursor: pointer;
+                &.active {
+                    .empty {
+                        z-index: 0;
+                        background-color: transparent;
+                    }
+                    .article-img {
+                        border-color: #c5161d;
+                        &::before {
+                            content: none;
+                        }
+                    }
+                }
             }
             .pagination {
                 position: absolute;
@@ -76,6 +89,7 @@
                 position: relative;
                 display: block;
                 padding-bottom: 145%;
+                border: 1px solid #b2b2b2;
 
                 img {
                     position: absolute;
@@ -89,19 +103,6 @@
                     inset: 0;
                     z-index: 2;
                     background-color: rgba($color: #000000, $alpha: 0.3);
-                }
-            }
-
-            .swiper-slide-active,
-            .swiper-slide-next {
-                .empty {
-                    z-index: 0;
-                    background-color: transparent;
-                }
-                .article-img {
-                    &::before {
-                        content: none;
-                    }
                 }
             }
         }
@@ -201,6 +202,34 @@
 
             .swiper {
                 width: 100%;
+            }
+            .swiper-button-prev,
+            .swiper-rtl .swiper-button-next {
+                left: 0;
+                right: auto;
+                background: #c5161d;
+                border-radius: 6px;
+                color: #fff;
+            }
+            .swiper-button-next,
+            .swiper-rtl .swiper-button-prev {
+                right: 0;
+                left: auto;
+                background: #c5161d;
+                border-radius: 6px;
+                color: #fff;
+            }
+            .swiper-button-next:after,
+            .swiper-rtl .swiper-button-prev:after,
+            .swiper-button-prev:after,
+            .swiper-rtl .swiper-button-next:after {
+                font-size: 20px;
+            }
+            .swiper-button-next.swiper-button-disabled,
+            .swiper-button-prev.swiper-button-disabled {
+                opacity: 0;
+                cursor: auto;
+                pointer-events: none;
             }
         }
     }

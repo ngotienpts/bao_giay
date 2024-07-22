@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Xử lý khi width nhở hơn 1024
     function handleResizeWidth() {
+        if(!sidebar) return;
+        
         if (window.innerWidth <= 700) {
             sidebar.style.height = screen.height - content.offsetHeight + "px";
         } else {

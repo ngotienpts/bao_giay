@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Tập hợp tất cả các phần tử cần sử dụng
-    const twoSlides = document.querySelectorAll(".js__twoSlidesContainer");
+    const newspaperBoxSlides = document.querySelectorAll(
+        ".js__newspaperBoxSlidesContainer"
+    );
     const fancyboxes = document.querySelectorAll(".fancybox-full");
     const items = document.querySelectorAll(".js__itemChildren");
     const sidebar = document.querySelector(".js__sidebar");
@@ -8,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Xử lý khi width nhở hơn 1024
     function handleResizeWidth() {
-        if(!sidebar) return;
-        
+        if (!sidebar) return;
+
         if (window.innerWidth <= 700) {
             sidebar.style.height = screen.height - content.offsetHeight + "px";
         } else {
@@ -40,9 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Khởi tạo slider với một item
-    function initSliderOneItems() {
-        if (twoSlides) {
-            twoSlides.forEach((item) => {
+    function initNewspaperSlider() {
+        if (newspaperBoxSlides) {
+            newspaperBoxSlides.forEach((item) => {
                 var slider = item.querySelector(".js__twoSlide");
                 var next = item.querySelector(".swiper-button-next");
                 var prev = item.querySelector(".swiper-button-prev");
@@ -125,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function initApp() {
         handleResizeWidth();
         initFancybox();
-        initSliderOneItems();
+        initNewspaperSlider();
     }
 
     // Bắt đầu khởi tạo ứng dụng
